@@ -12,26 +12,10 @@
     <title>@yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="{{asset('css/app.css')}}" rel="stylesheet">
 
-    <link href="{{asset('css/libs/bootstrap.css')}}" rel="stylesheet">
-    <link href="{{asset('css/libs/metisMenu.css')}}" rel="stylesheet">
-    <link href="{{asset('css/libs/sb-admin-2.css')}}" rel="stylesheet">
-    <link href="{{asset('css/libs/styles.css')}}" rel="stylesheet">
-    <link href="{{asset('css/libs/font-awesome.css')}}" rel="stylesheet">
-
-    <link href="{{asset('css/libs.css')}}" rel="stylesheet">
-
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-
-
+    <link href="{{asset('assets/css/libs/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/libs/metisMenu.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/libs/sb-admin-2.css')}}" rel="stylesheet">
 
 </head>
 
@@ -60,15 +44,15 @@
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    <i class="fas fa-user fa-fw"></i> <i class="fas fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    <li><a href="#"><i class="fas fa-user fa-fw"></i> User Profile</a>
                     </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    <li><a href="#"><i class="fas fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="{{ url('/logout') }}"><i class="fas fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->
@@ -115,18 +99,18 @@
                             <input type="text" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
+                                        <i class="fas fa-search"></i>
                                     </button>
                                 </span>
                         </div>
                         <!-- /input-group -->
                     </li>
                     <li>
-                        <a href="/admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="/admin"><i class="fas fa-dashboard "></i> Dashboard</a>
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Users<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fas fa-user "></i>Users<span class="fas arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="/admin/users">All Users</a>
@@ -141,7 +125,7 @@
                     </li>
 
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fas fa-wrench fa-fw"></i> Posts<span class="fas arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="/posts">All Posts</a>
@@ -157,7 +141,7 @@
 
 
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Categories<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fas fa-wrench fa-fw"></i>Categories<span class="fas arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="/categories">All Categories</a>
@@ -173,7 +157,7 @@
 
 
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Media<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fas fa-wrench fa-fw"></i>Media<span class="fas arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="/media">All Media</a>
@@ -194,7 +178,7 @@
 
 
                     <li>
-                        <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fas fa-bar-chart-o fa-fw"></i> Charts<span class="fas arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="flot.html">Flot Charts</a>
@@ -206,13 +190,13 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                        <a href="tables.html"><i class="fas fa-table fa-fw"></i> Tables</a>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
+                        <a href="forms.html"><i class="fas fa-edit fa-fw"></i> Forms</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fas fa-wrench fa-fw"></i> UI Elements<span class="fas arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="panels-wells.html">Panels and Wells</a>
@@ -236,7 +220,7 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fas fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fas arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="#">Second Level Item</a>
@@ -245,7 +229,7 @@
                                 <a href="#">Second Level Item</a>
                             </li>
                             <li>
-                                <a href="#">Third Level <span class="fa arrow"></span></a>
+                                <a href="#">Third Level <span class="fas arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li>
                                         <a href="#">Third Level Item</a>
@@ -266,7 +250,7 @@
                         <!-- /.nav-second-level -->
                     </li>
                     <li class="active">
-                        <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                        <a href="#"><i class="fas fa-files-o fa-fw"></i> Sample Pages<span class="fas arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a class="active" href="blank.html">Blank Page</a>
@@ -294,14 +278,14 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="/profile"><i class="fa fa-dashboard fa-fw"></i>Profile</a>
+                    <a href="/profile"><i class="fas fa-dashboard fa-fw"></i>Profile</a>
                 </li>
 
 
 
 
                 <li>
-                    <a href="#"><i class="fa fa-wrench fa-fw"></i> Posts<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fas fa-wrench fa-fw"></i> Posts<span class="fas arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="">All Posts</a>
@@ -353,7 +337,7 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="{{asset('js/libs.js')}}"></script>
+<script src="{{asset('js/app.js')}}"></script>
 
 
 @yield('footer')

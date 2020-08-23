@@ -25,7 +25,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::group()
+
+
 Route::resource('/admin/users/', 'AdminUserController');
 
+Route::get('/admin/users/{id}/edit', 'AdminUserController@edit');
 
-
+Route::put('/admin/users/{id}', 'AdminUserController@update');

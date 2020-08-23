@@ -9,6 +9,8 @@ use App\Photo;
 
 
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserEditRequest;
+
 
 class AdminUserController extends Controller
 {
@@ -45,7 +47,15 @@ class AdminUserController extends Controller
     public function store(UserRequest $request)
     {
         //
-        $input = $request->all();
+
+        if(trim($request->password) == ''){
+            $input = $request->except('password');
+        }else{
+         $input['password'] = bcrypt($request->password);
+         $input = $request->all();
+
+        }
+
 
         if($file = $request->file('photo_id')){
             $name = time() . $file->getClientOriginalName();
@@ -53,7 +63,6 @@ class AdminUserController extends Controller
             $file->move('images',$name);
             $input['photo_id'] = $photo->id;
         }
-        $input['password'] = bcrypt($request->password);
         User::create($input);
         return redirect('/admin/users');
     }
@@ -91,12 +100,18 @@ class AdminUserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserEditRequest $request, $id)
     {
         //
-        $user = User::findOrFail($id);
-        $input = $request->all();
 
+        if(trim($request->password) == ''){
+            $input = $request->except('password');
+        }else{
+            $input['password'] = bcrypt($request->password);
+            $input = $request->all();
+
+        }
+       
         if($file = $request->file('photo_id')){
             $name = time() . $file->getClientOriginalName();
             $photo = Photo::create(['name'=>$name]);
@@ -104,10 +119,9 @@ class AdminUserController extends Controller
 
             $input['photo_id'] = $photo->id;
         }
-        $input['password'] = bcrypt($request->password);
-
-        User::create($input);
-        redirect('/admin/users');
+        $user = User::findOrFail($id)->update($input);
+        
+        return redirect('/admin/users');
     }
 
     /**
