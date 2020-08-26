@@ -121,7 +121,7 @@ class AdminUserController extends Controller
 
 
         $user = User::findOrFail($id)->update($input);
-        unlink(public_path(). '/images/' . $user->photo->name);
+        unlink(public_path(). $user->photo->name);
         
         Session::flash('updated_user', 'A user has been updated. User: | '. $input['name'] .' |');
 

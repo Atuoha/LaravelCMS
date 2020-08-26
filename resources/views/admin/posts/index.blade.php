@@ -21,6 +21,8 @@
 <a class="btn btn-success" href="{{ route('posts.create') }}"> Create New Post </a>
 <br>
 <br>
+@if($posts)
+
     <table class="table table-responsive table-bordered table-striped table-hover">
         <thead>
             <tr>
@@ -42,7 +44,6 @@
 
         <tbody>
 
-        @if($posts)
         
         @foreach($posts as $post)
         <tr>
@@ -50,6 +51,7 @@
                 <td><img class="img-rounded" width="100" src="{{$post->photo != '' ?  $post->photo->name : '/images/default.png'}}" alt=""></td>
                <td> {{$post->category_id == 0 ? 'No Category' : $post->category->name}}</td> 
                 <td>{{ $post->title }}</td>
+            
                 <td>{{ $post->body }}</td>
                 <td>{{ $post->user != '' ? $post->user->name : 'Post has no author' }}</td>
                 <td> {{$post->status == 1 ? 'Active' : 'Not Active'}}</td>

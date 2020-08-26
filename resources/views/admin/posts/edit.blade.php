@@ -9,7 +9,9 @@
 
 
 
-{!! Form::model($post, ['method'=>'PATCH', 'action'=>['PostController@update', $post->id], 'files'=> True]) !!}
+{!! Form::model($post, ['method'=>'PUT', 'action'=>['PostController@update', $post->id], 'files'=> True]) !!}
+
+
 
 <div class="row">
     <div class="col-md-6">
@@ -38,7 +40,7 @@
         </div>
 
         <div class="col-md-6">
-         <img class="img-circle img-responsive" src="{{ $post->photo ? $post->photo->name : '/images/default.png' }}" width="100">
+         <img class="img-rounded img-responsive" src="{{ $post->photo ? $post->photo->name : '/images/default.png' }}" width="100">
         </div>
         </div>
     </div>
@@ -58,7 +60,7 @@
         <div class="form-group">
         {!! Form::label('category_id','Category') !!}
             <select class="form-control" name="category_id">
-                <option>Select A Category</option>
+                <option disabled>Select A Category</option>
                     @foreach($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach

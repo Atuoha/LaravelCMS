@@ -36,7 +36,7 @@
 
                 <tr>
                 <th>Active</th>
-                <td> {{$user->is_admin == 1 ? 'Active' : 'Not Active'}}</td>
+                <td> {{$user->is_active == 1 ? 'Active' : 'Not Active'}}</td>
                 </tr>
 
                 <tr>

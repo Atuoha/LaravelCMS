@@ -19,11 +19,12 @@ class CreatePostsTable extends Migration
             $table->text('body');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('category_id')->unsigned()->index();
-            $table->integer('photo_id')->unsigned()->index();
+            $table->integer('photo_id')->unsigned()->index()->nullable();
             $table->string('status')->nullable();
             $table->integer('views')->nullable();
             $table->softdeletes();
             $table->timestamps();
+
         });
     }
 

@@ -46,7 +46,7 @@ Route::group(['middleware'=>'admin'], function(){
 
     // pOST ROUTES
     Route::resource('/admin/posts', 'PostController');
-    
+
     Route::get('/admin/posts/{id}/edit', 'PostController@edit');
 
     Route::put('/admin/posts/{id}', 'PostController@update');

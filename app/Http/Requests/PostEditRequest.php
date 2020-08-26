@@ -13,7 +13,7 @@ class PostEditRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,18 +26,12 @@ class PostEditRequest extends FormRequest
         return [
             //
 
-            'title'=> 'bail | required |max:20 |unique:posts',
+            'title'=> 'bail | required |max:200',
             'body'=> 'bail | required |max:1200',
             'status'=> 'required',
-            'category_id'=> 'required',
 
         ];
     }
 
-    public function messages(){
-        return[
-            'category_id.required'=> 'Category type is required'
-
-        ];
-    }
+   
 }

@@ -110,26 +110,25 @@ class PostController extends Controller
     public function update(PostEditRequest $request,  $id)
     {
         //  
-            $user = User::findOrFail($id);
+            $post = Post::findOrFail($id);
 
-            if($request->user_id == ''){
-                $input = $request->except('user_id');
-            }elseif($request->category_id == ''){
+            if(trim($request->category_id) == ''){
                 $input = $request->except('category_id');
             }else{
                 $input  = $request->all();
-
             }
 
             if($file = $request->file('photo_id')){
                 $name = time() . $file->getClientOriginalName();
                 $photo = Photo::create(['name'=>$name]);
-                unlink(public_path() . $user->photo);
+                unlink(public_path() . $post->photo->name);
                 $file->move('images', $name);
                 $input['photo_id'] = $photo->id;
             }
 
-            $user->update($input);
+            // $post->update($input);
+            Auth::user()->posts()->whereId($id)->first()->update($id);
+            
             Session::flash('updated_post', 'A post was updated recently. | Title: '. $request->title .' |');
 
              return redirect('/admin/posts');
@@ -147,8 +146,8 @@ class PostController extends Controller
         //
         $post = Post::findOrFail($id);
 
-        unlink(public_path(). $post->photo);
-        Session('deleted_post', 'Post has been deleted. | Title: '. $post->title.' |');
+        unlink(public_path(). $post->photo->name);
+        Session::flash('deleted_post', 'Post has been deleted. | Title: '. $post->title.' |');
 
         $post->delete();
         return redirect('/admin/posts');

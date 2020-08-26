@@ -7,7 +7,7 @@
 @if($post)
 
     <div style="float:right">
-   <img class="img-rounded" width="100" src="{{$post->photo != '' ? $post->photo->name : '/images/default.png'}}" alt="">
+   <img class="img-rounded" width="200" src="{{$post->photo != '' ? $post->photo->name : '/images/default.png'}}" alt="">
    <h4>Post: {{ $post->title }}</h4>
    </div>
 

@@ -26,7 +26,7 @@ class PostRequest extends FormRequest
         return [
             //
 
-            'title'=> 'bail | required |max:20 |unique:posts',
+            'title'=> 'bail | required |max:200 |unique:posts',
             'body'=> 'bail | required |max:1255',
             'status'=> 'required',
             'photo_id'=> 'required',

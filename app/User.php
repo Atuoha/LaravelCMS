@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'is_admin','photo_id'
+        'name', 'email', 'password', 'role_id', 'is_active','photo_id'
     ];
 
     /**
@@ -48,7 +48,7 @@ class User extends Authenticatable
 
 
     public function is_admin(){
-        if($this->role->name == 'Admin' && $this->is_admin == 1){
+        if($this->role->name == 'Admin' && $this->is_active == 1){
             return true;
         }
             return false;

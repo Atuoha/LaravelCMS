@@ -52,7 +52,7 @@
 <div class="row">
 <div class="form-group col-md-6">
     {!! Form::label('status', 'Status') !!}
-    {!! Form::select('is_admin', ['1' => 'Active', '0' => 'Inactive'], null , ['class'=> 'form-control', 'placeholder' => 'Select status...'])!!}
+    {!! Form::select('is_active', ['1' => 'Active', '0' => 'Inactive'], null , ['class'=> 'form-control', 'placeholder' => 'Select status...'])!!}
 
 </div>
 
