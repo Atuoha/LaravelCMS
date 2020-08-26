@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserEditRequest extends FormRequest
+class PostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,8 +14,8 @@ class UserEditRequest extends FormRequest
     public function authorize()
     {
         return true;
-    }
 
+    }
     /**
      * Get the validation rules that apply to the request.
      *
@@ -25,18 +25,19 @@ class UserEditRequest extends FormRequest
     {
         return [
             //
-            'name'=> 'required | max:50',
-            'email'=> 'required',
-            'role_id' => 'required'
+
+            'title'=> 'bail | required |max:20 |unique:posts',
+            'body'=> 'bail | required |max:1255',
+            'status'=> 'required',
+            'photo_id'=> 'required',
+            'category_id'=> 'required'
         ];
     }
 
     public function messages(){
-
-        return [
-
-            'role_id.required' => 'The role is required',
-            'photo_id.required' => 'Passport is required'
+        return[
+            'photo_id.required'=> 'Post image is required',
+            'category_id.required'=> 'Category type is required'
 
         ];
     }

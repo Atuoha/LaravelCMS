@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use App\Photo;
-
+use Illuminate\Support\Facades\Session;
 
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserEditRequest;
@@ -23,6 +23,8 @@ class AdminUserController extends Controller
     {
         //
         $users = User::all();
+        // $users = User::all()->orderBy('id','desc')->get();
+
         return view('admin.users.index', compact('users'));
     }
 
@@ -48,14 +50,8 @@ class AdminUserController extends Controller
     {
         //
 
-        if(trim($request->password) == ''){
-            $input = $request->except('password');
-        }else{
          $input['password'] = bcrypt($request->password);
          $input = $request->all();
-
-        }
-
 
         if($file = $request->file('photo_id')){
             $name = time() . $file->getClientOriginalName();
@@ -63,7 +59,10 @@ class AdminUserController extends Controller
             $file->move('images',$name);
             $input['photo_id'] = $photo->id;
         }
+
         User::create($input);
+        Session::flash('created_user', 'A new user has been created. User: | '. $input['name'] .' |');
+
         return redirect('/admin/users');
     }
 
@@ -76,7 +75,8 @@ class AdminUserController extends Controller
     public function show($id)
     {
         //
-        return view('admin.users.show');
+        $user = User::findOrFail($id);
+        return view('admin.users.show', compact('user'));
 
     }
 
@@ -109,18 +109,22 @@ class AdminUserController extends Controller
         }else{
             $input['password'] = bcrypt($request->password);
             $input = $request->all();
-
         }
        
-        if($file = $request->file('photo_id')){
+        if($file = $request->file('photo_id') || $request->photo_id != ''){
             $name = time() . $file->getClientOriginalName();
             $photo = Photo::create(['name'=>$name]);
             $file->move('images', $name);
 
             $input['photo_id'] = $photo->id;
         }
+
+
         $user = User::findOrFail($id)->update($input);
+        unlink(public_path(). '/images/' . $user->photo->name);
         
+        Session::flash('updated_user', 'A user has been updated. User: | '. $input['name'] .' |');
+
         return redirect('/admin/users');
     }
 
@@ -133,5 +137,12 @@ class AdminUserController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::findOrFail($id);
+        Session::flash('deleted_user', 'A user has been deleted.  User: | '. $user->name .' |');
+
+        unlink(public_path() . $user->photo->name);
+
+        $user->delete();
+        return redirect('/admin/users');
     }
 }

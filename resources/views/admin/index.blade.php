@@ -4,7 +4,8 @@
 
 
 @section('content')
-Hello
+
+    <H1>Admininstration Block</H1>
 
 @endsection
 

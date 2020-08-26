@@ -25,11 +25,36 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group()
+Route::group(['middleware'=>'admin'], function(){
+
+    // USER IMPLENTATION ROUTES
+        
+    Route::resource('/admin/users/', 'AdminUserController');
+
+    Route::get('/admin/users/{id}/edit', 'AdminUserController@edit');
+
+    Route::put('/admin/users/{id}', 'AdminUserController@update');
+
+    Route::get('/admin/users/{id}', 'AdminUserController@show');
+
+    Route::delete('/admin/users/{id}', 'AdminUserController@destroy');
+
+    // 
+
+    Route::view('/admin', 'admin.index');
 
 
-Route::resource('/admin/users/', 'AdminUserController');
+    // pOST ROUTES
+    Route::resource('/admin/posts', 'PostController');
+    
+    Route::get('/admin/posts/{id}/edit', 'PostController@edit');
 
-Route::get('/admin/users/{id}/edit', 'AdminUserController@edit');
+    Route::put('/admin/posts/{id}', 'PostController@update');
 
-Route::put('/admin/users/{id}', 'AdminUserController@update');
+    Route::get('/admin/posts/{id}', 'PostController@show');
+
+    Route::delete('/admin/posts/{id}', 'PostController@destroy');
+    
+});
+
+
