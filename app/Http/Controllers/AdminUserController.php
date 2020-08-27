@@ -103,6 +103,7 @@ class AdminUserController extends Controller
     public function update(UserEditRequest $request, $id)
     {
         //
+        $user = User::findOrFail($id);
 
         if(trim($request->password) == ''){
             $input = $request->except('password');
@@ -111,17 +112,18 @@ class AdminUserController extends Controller
             $input = $request->all();
         }
        
-        if($file = $request->file('photo_id') || $request->photo_id != ''){
+        if($file = $request->file('photo_id')){
             $name = time() . $file->getClientOriginalName();
             $photo = Photo::create(['name'=>$name]);
+            // unlink(public_path(). $user->photo->name);
+
             $file->move('images', $name);
 
             $input['photo_id'] = $photo->id;
         }
 
 
-        $user = User::findOrFail($id)->update($input);
-        unlink(public_path(). $user->photo->name);
+        $user->update($input);
         
         Session::flash('updated_user', 'A user has been updated. User: | '. $input['name'] .' |');
 

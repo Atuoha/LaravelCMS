@@ -152,11 +152,11 @@
                         <a href="#"><i class="fas fa-wrench fa-fw"></i>Categories<span class="fas arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/categories">All Categories</a>
+                                <a href="{{ route('category.index') }}">All Categories</a>
                             </li>
 
                             <li>
-                                <a href="/categories/create">Create Category</a>
+                                <a href="{{ route('category.create') }}">Create Category</a>
                             </li>
 
                         </ul>

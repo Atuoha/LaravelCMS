@@ -68,7 +68,7 @@
 </div>
 
 
-<div class="form-group">
+<div class="form-group  mt-2">
     {!! Form::submit('Edit User',['class'=>'btn btn-success']) !!}
 </div>
 

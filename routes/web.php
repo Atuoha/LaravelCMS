@@ -54,6 +54,17 @@ Route::group(['middleware'=>'admin'], function(){
     Route::get('/admin/posts/{id}', 'PostController@show');
 
     Route::delete('/admin/posts/{id}', 'PostController@destroy');
+
+
+    // Category Routes
+    Route::resource('/admin/category', 'CatController');
+
+    Route::get('/admin/category/{id}/edit', 'CatController@edit');
+
+    Route::delete('/admin/category/{id}', 'CatController@destroy');
+
+    Route::put('/admin/category/{id}', 'CatController@update');
+
     
 });
 

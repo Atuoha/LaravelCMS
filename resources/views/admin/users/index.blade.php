@@ -68,6 +68,13 @@
                 <td>{{ $user->updated_at->diffForHumans() }}</td>
                 <td><a class="btn btn-primary" href="{{ route('edit', $user->id)}}">Edit</a></td>
                 <td><a class="btn btn-success" href="{{ route('show', $user->id)}}">View</a></td>
+                <td>
+                    {!! Form::open(['method'=>'DELETE', 'action'=>['AdminUserController@destroy', $user->id] ]) !!}
+
+                        {!! Form::submit('Delete User',['class'=>'btn btn-danger']) !!}
+
+                    {!! Form::close() !!}
+                </td>
 
                
         </tr>

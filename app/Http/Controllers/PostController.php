@@ -121,14 +121,14 @@ class PostController extends Controller
             if($file = $request->file('photo_id')){
                 $name = time() . $file->getClientOriginalName();
                 $photo = Photo::create(['name'=>$name]);
-                unlink(public_path() . $post->photo->name);
+                // unlink(public_path() . $post->photo->name);
                 $file->move('images', $name);
                 $input['photo_id'] = $photo->id;
             }
 
-            // $post->update($input);
-            Auth::user()->posts()->whereId($id)->first()->update($id);
-            
+            $post->update($input);
+            // Auth::user()->posts()->whereId($id)->first()->update($id);
+
             Session::flash('updated_post', 'A post was updated recently. | Title: '. $request->title .' |');
 
              return redirect('/admin/posts');

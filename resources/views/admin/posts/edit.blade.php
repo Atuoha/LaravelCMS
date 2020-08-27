@@ -60,7 +60,7 @@
         <div class="form-group">
         {!! Form::label('category_id','Category') !!}
             <select class="form-control" name="category_id">
-                <option disabled>Select A Category</option>
+                <!-- <option disabled>Select A Category</option>clear -->
                     @foreach($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
                     @endforeach
@@ -87,7 +87,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row mt-4">
     <div class="col-md-6">
         {!! Form::submit('Edit Post', ['class'=>'btn btn-success']) !!}
     </div>
