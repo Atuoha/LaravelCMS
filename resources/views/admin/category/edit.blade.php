@@ -21,7 +21,7 @@
 </div>
 
 <div class="row  pull-right">
-    {!! Form::submit('Create post', ['class'=>'btn btn-success' ]) !!}
+    {!! Form::submit('Edit post', ['class'=>'btn btn-success' ]) !!}
 </div>
 
 {!! Form::close() !!}

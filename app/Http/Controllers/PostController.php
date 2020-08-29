@@ -6,6 +6,8 @@ use App\Post;
 use App\User;
 use App\Photo;
 use App\Category;
+use App\Comment;
+
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -152,5 +154,29 @@ class PostController extends Controller
         $post->delete();
         return redirect('/admin/posts');
 
+    }
+
+    public function home_post($id){
+
+        $post = Post::findOrFail($id);
+        $categories = Category::all();
+        $comments = $post->comments->where('is_active', 1);
+        return view('post', compact('post', 'categories', 'comments'));
+    }
+
+    public function all_home_posts(){
+        $posts = Post::all();
+        $categories = Category::all();
+
+        return view('layouts.blog-home', compact('posts', 'categories'));
+    }
+
+    public function search(){
+
+        // $validate = $request->validate[
+        //     'search'=> 'required'
+        // ];
+
+        return $request->search;
     }
 }

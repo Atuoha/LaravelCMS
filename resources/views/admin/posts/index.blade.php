@@ -28,6 +28,7 @@
             <tr>
                 <th>Id</th>
                <th>Category</th> 
+               <th>Capture</th>
                 <th>Title</th>
                 <th>Body</th>
                 <th>Author</th>
@@ -47,12 +48,11 @@
         @foreach($posts as $post)
         <tr>
                 <td>{{ $post->id }}</td>
+                <td>{{ $post->category->name }}</td>
                 <td><img class="img-rounded" width="100" src="{{$post->photo != '' ?  $post->photo->name : '/images/default.png'}}" alt=""></td>
-               <td> {{$post->category_id == 0 ? 'No Category' : $post->category->name}}</td> 
                 <td>{{ Str::title($post->title)  }}</td>
-            
                 <td>{{ Str::limit($post->body, 30)  }}</td>
-                <td>{{ $post->user != '' ? $post->user->name : 'Post has no author' }}</td>
+                <td>{{ $post->user->name }}</td>
                 <td> {{$post->status == 1 ? 'Active' : 'Not Active'}}</td>
                 <td>{{ $post->created_at->diffForHumans() }}</td>
                 <td>{{ $post->updated_at->diffForHumans() }}</td>
@@ -61,10 +61,13 @@
                 <td>
                     {!! Form::open(['method'=>'DELETE', 'action'=>['PostController@destroy', $post->id] ]) !!}
 
-                        {!! Form::submit('Delete post',['class'=>'btn btn-danger']) !!}
+                        {!! Form::submit('Delete',['class'=>'btn btn-danger']) !!}
 
                     {!! Form::close() !!}
                 </td>
+                <td><a href="{{ route('home.post', $post->id) }}">View</td>
+                <td><a href="{{ route('comments.show', $post->id) }}">Comments</td>
+
 
                
         </tr>

@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PostController@all_home_posts')->name('blog_home');
 
 Auth::routes();
 
@@ -24,8 +22,15 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//Home-post routes
+Route::get('/post/{id}', 'PostController@home_post')->name('home.post');
+
+Route::post('/search{request}', 'PostController@search')->name('search');
 
 Route::group(['middleware'=>'admin'], function(){
+
 
     // USER IMPLENTATION ROUTES
         
@@ -65,7 +70,22 @@ Route::group(['middleware'=>'admin'], function(){
 
     Route::put('/admin/category/{id}', 'CatController@update');
 
+
+    //Image Routes
+    Route::resource('/admin/media', 'MediaController');
+    Route::delete('/admin/media/{id}', 'MediaController@destroy');
+
+    // Comment routes
+    Route::resource('/admin/comments', 'PostCommentController');
+    Route::delete('/admin/comment/{id}', 'PostCommentController@destroy');
+    Route::put('/admin/comment/{id}', 'PostCommentController@update');
+
+    // Replies routes
+    Route::resource('/admin/comment/replies', 'CommentRepliesController');
+    Route::get('/admin/comment/replies/{id}', 'CommentRepliesController@show');
+
     
+
 });
 
 

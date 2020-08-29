@@ -35,3 +35,7 @@
 .toppad
 {margin-top:20px;
 }
+
+#reply_form{
+    display:none;
+}

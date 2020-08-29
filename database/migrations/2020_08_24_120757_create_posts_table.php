@@ -26,6 +26,7 @@ class CreatePostsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // $table->foreign
         });
     }
 

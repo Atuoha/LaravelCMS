@@ -59,7 +59,7 @@
         @endforeach
 
         <tbody>
-
+</table>
 
 
 @endif

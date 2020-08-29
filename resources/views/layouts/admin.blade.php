@@ -16,8 +16,15 @@
     <link href="{{asset('assets/css/libs/bootstrap.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/libs/metisMenu.css')}}" rel="stylesheet">
     <link href="{{asset('assets/css/libs/sb-admin-2.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/libs/styles.css')}}" rel="stylesheet">
+
+
+  
+
+
 
 </head>
+
 
 <body id="admin-page">
 
@@ -143,9 +150,19 @@
                                 <a href="{{ route('posts.create') }}">Create Post</a>
                             </li>
 
+                            <li>
+                                <a href="{{ route('comments.index') }}">All Comments</a>
+                             </li>
+
+                             <li>
+                                <a href="{{ route('replies.index') }}">All Replies</a>
+                             </li>
+
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
+
+                    
 
 
                     <li>
@@ -168,14 +185,19 @@
                         <a href="#"><i class="fas fa-wrench fa-fw"></i>Media<span class="fas arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a href="/media">All Media</a>
+                                <a href="{{ route('media.index') }}">All Media</a>
                             </li>
 
                             <li>
-                                <a href="">Upload Media</a>
-                            </li>
+                                <a href="{{ route('media.create') }}">Upload Media</a>
+                    </li>
 
-                        </ul>
+                   
+                            
+
+                          
+
+                </ul>
                         <!-- /.nav-second-level -->
                     </li>
 
@@ -345,8 +367,12 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="{{asset('js/app.js')}}"></script>
 
+<!-- <script src="{{asset('assets/js/libs/bootstrap.js')}}"></script>
+<script src="{{asset('assets/js/libs/jquery.js')}}"></script>
+<script src="{{asset('assets/js/libs/metisMenu.js')}}"></script> -->
+<script src="{{asset('assets/js/libs/sb-admin-2.js')}}"></script>
+<script src="{{asset('assets/js/libs/scripts.js')}}"></script>
 
 @yield('footer')
 
