@@ -27,7 +27,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Home-post routes
 Route::get('/post/{id}', 'PostController@home_post')->name('home.post');
 
-Route::post('/search{request}', 'PostController@search')->name('search');
+// Route::post('/search{request}', 'PostController@search')->name('search');
+Route::get('/category/{id}', 'PostController@cat_post')->name('category.post');
 
 Route::group(['middleware'=>'admin'], function(){
 
@@ -84,7 +85,7 @@ Route::group(['middleware'=>'admin'], function(){
     Route::resource('/admin/comment/replies', 'CommentRepliesController');
     Route::get('/admin/comment/replies/{id}', 'CommentRepliesController@show');
 
-    
+    Route::get('/admin/comment/show_replies/{id}', 'PostCommentController@replies')->name('comment.replies');
 
 });
 

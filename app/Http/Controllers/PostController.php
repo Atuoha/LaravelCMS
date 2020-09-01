@@ -27,7 +27,7 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts = Post::all();
+        $posts = Post::paginate(2);
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -165,18 +165,25 @@ class PostController extends Controller
     }
 
     public function all_home_posts(){
-        $posts = Post::all();
+        $posts = Post::paginate(2);
         $categories = Category::all();
 
         return view('layouts.blog-home', compact('posts', 'categories'));
     }
 
-    public function search(){
+    // public function search(){
 
-        // $validate = $request->validate[
-        //     'search'=> 'required'
-        // ];
+    //     // $validate = $request->validate[
+    //     //     'search'=> 'required'
+    //     // ];
 
-        return $request->search;
+    //     return $request->search;
+    // }
+
+    public function cat_post($id){
+        $sing_category = Category::findOrFail($id);
+        $posts = $sing_category->posts()->paginate(2);
+        $categories = Category::all();
+        return view('layouts.categ_blog_home', compact('posts','categories','sing_category'));
     }
 }

@@ -76,7 +76,7 @@
 
                 <h1 class="page-header">
                    CM Sys
-                    <small>With Laravel 7.x</small>
+                    <small>Category: {{ $sing_category->name }}</small>
                 </h1>
 
                @if($posts)
@@ -102,7 +102,7 @@
                 <hr>
 
                 <!-- Pager -->
-               <div class="row">
+                <div class="row">
                    <div class="col-sm-6 col-offset-sm-5">
                        {{ $posts->render() }}
                    </div>

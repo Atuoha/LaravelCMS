@@ -5,11 +5,21 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 
-class Post extends Model
+class Post extends Model implements SluggableInterface
 {
     //
     use SoftDeletes;
+
+    use SluggableTrait;
+
+    protected $sluggable = [
+    'build_from'=> 'title',
+    'save_to'  => 'slug',
+    'on_update' => true
+    ];
 
 
     protected $fillable = ['title', 'body', 'user_id', 'status', 'comment_id', 'view', 'photo_id', 'category_id'];

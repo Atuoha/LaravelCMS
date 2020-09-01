@@ -114,4 +114,12 @@ class PostCommentController extends Controller
         
         return redirect('admin/comments');
     }
+
+    public function replies($id){
+
+        $comment = Comment::findOrFail($id);
+        $comment_replies = $comment->replies;
+
+        return view('admin.comments.comment_replies', compact('comment_replies','comment'));
+    }
 }

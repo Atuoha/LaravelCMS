@@ -65,7 +65,7 @@
 
                     {!! Form::close() !!}
                 </td>
-                <td><a href="{{ route('home.post', $post->id) }}">View</td>
+                <td><a href="{{ route('home.post', $post->id) }}">View Post</td>
                 <td><a href="{{ route('comments.show', $post->id) }}">Comments</td>
 
 
@@ -76,6 +76,12 @@
         @endif
         </tbody>
     </table>
+
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-5">
+            {{ $posts->render() }}
+        </div>
+    </div>
     
 
 

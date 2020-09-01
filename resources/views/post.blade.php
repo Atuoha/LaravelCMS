@@ -4,6 +4,13 @@
 @if($post)
 
  <!-- Blog Post -->
+                <p>
+                    @if(Auth::check())
+                        @if(Auth::user()->is_admin())
+                            <a href="{{ route('posts.edit', $post->id) }}">Edit Post</a>
+                        @endif
+                    @endif
+                </p>
 
                 <!-- Title -->
                 <h1>{{ Str::title($post->title) }}</h1>
@@ -12,7 +19,8 @@
                 <p class="lead">
                     by <a href="#">{{ Str::title($post->user->name) }}</a>
                 </p>
-
+                
+                
                 <hr>
 
                 <!-- Date/Time -->
@@ -27,6 +35,7 @@
 
                 <!-- Post Content -->
                 <p>{{ $post->body }}</p>
+
 
                 <hr>
 
@@ -67,7 +76,9 @@
                 <!-- Comment -->
                 <div class="media">
                     <a class="pull-left" href="#">
-                        <img class="media-object img-circle" width="50" src="{{ $comment->photo }}" alt="">
+                       {{--  <img class="media-object img-circle" width="50" src="{{ $comment->photo }}" alt=""> --}}
+                       <img class="media-object img-circle" width="50" src="{{ Auth::user()->gravatar }}" alt=""> 
+                       
                     </a>
                     <div class="media-body">
                         <h4 class="media-heading">{{ $comment->author }}
@@ -75,22 +86,32 @@
                         </h4>
                         {{ $comment->body }}
 
-                        <a id="reply">Reply</a>
+                        <a class="reply">Reply</a>
+
+                        <script>
+                        $('.reply').click(function(){
+                            $('.reply_form').fadeIn("slow")
+                            $('.reply').fadeOut("slow")
+
+                        })
+                        </script>
 
                         <!-- Nested Comment -->
                         @if($comment->replies) 
                          @foreach($comment->replies as $reply) 
-                        <div class="media" style="margin-top:40px;">
-                            <a class="pull-left" href="#">
-                                <img class="media-object img-circle" width="50" src="{{ $reply->photo}}" alt="">
-                            </a>
-                            <div class="media-body">
-                                <h4 class="media-heading"> {{ $reply->author }} 
-                                  <small>{{ $reply->created_at->diffForHumans() }}</small> 
-                                </h4>
-                              {{ $reply->reply }} 
-                            </div>
-                        </div>    
+                           @if($reply->is_active == 1)
+                                <div class="media" style="margin-top:40px;">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object img-circle" width="50" src="{{ $reply->photo}}" alt="">
+                                    </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"> {{ $reply->author }} 
+                                        <small>{{ $reply->created_at->diffForHumans() }}</small> 
+                                        </h4>
+                                    {{ $reply->reply }} 
+                                    </div>
+                                </div>  
+                               @endif   
                             @endforeach
                         @endif    
 
@@ -99,8 +120,9 @@
                         @if(session('reply_created'))
                             <div class="alert alert-success">{{ session('reply_created') }}</div>
                         @endif
-
-                         {!! Form::open(['method'=>'POST', 'action'=>'CommentRepliesController@store', 'id'=>"reply_form"])!!}
+                        
+                        <div class="reply_form">
+                         {!! Form::open(['method'=>'POST', 'action'=>'CommentRepliesController@store'])!!}
                             <div class="form-group">
                                 {!! Form::label('comment', 'Reply') !!}
                                 {!! Form::textarea('reply', null, ['class'=>'form-control', 'rows'=>1]) !!}
@@ -113,6 +135,7 @@
                             </div>
                             {!! Form::submit('Sumbit', ['class'=>'btn btn-primary']) !!}
                          {!! Form::close() !!}
+                         </div>
 
                         @endif
 
@@ -152,7 +175,7 @@
                                 @if($categories)
 
                                     @foreach($categories as $category)
-                                    <li> <a href="#">{{ $category->name }}</a> </li>
+                                    <li> <a href="{{ route('category.post', $category->id ) }}">{{ $category->name }}</a> </li>
                                     @endforeach
 
                                 @endif
@@ -164,3 +187,15 @@
 @endif
 
 @stop
+
+<style>
+    .reply_form{
+        display:none;
+    }
+    .reply:hover{
+        cursor:pointer;
+    }
+</style>
+
+
+<script src="{{asset('assets/js/libs/jquery.js')}}"></script>
