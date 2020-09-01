@@ -57,7 +57,7 @@
                 <td>{{ $post->created_at->diffForHumans() }}</td>
                 <td>{{ $post->updated_at->diffForHumans() }}</td>
                 <td><a class="btn btn-primary" href="{{ route('posts.edit', $post->id)}}">Edit</a></td>
-                <td><a class="btn btn-success" href="{{ route('posts.show', $post->id)}}">View</a></td>
+                <td><a class="btn btn-success" href="{{ route('posts.show', $post->slug)}}">View</a></td>
                 <td>
                     {!! Form::open(['method'=>'DELETE', 'action'=>['PostController@destroy', $post->id] ]) !!}
 

@@ -7,6 +7,8 @@ use App\User;
 use App\Role;
 use App\Photo;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Hash;
+
 
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserEditRequest;
@@ -49,9 +51,8 @@ class AdminUserController extends Controller
     public function store(UserRequest $request)
     {
         //
-
-         $input['password'] = bcrypt($request->password);
-         $input = $request->all();
+        $input = $request->all();
+         $input['password'] = Hash::make( $input['password']);
 
         if($file = $request->file('photo_id')){
             $name = time() . $file->getClientOriginalName();
@@ -108,8 +109,8 @@ class AdminUserController extends Controller
         if(trim($request->password) == ''){
             $input = $request->except('password');
         }else{
-            $input['password'] = bcrypt($request->password);
             $input = $request->all();
+            $input['password'] = Hash::make( $input['password']);
         }
        
         if($file = $request->file('photo_id')){

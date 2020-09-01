@@ -78,10 +78,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
         //
-        $post = Post::findOrFail($id);
+        $post = Post::findBySlugOrFail($slug);
         return view('admin.posts.show', compact('post'));
 
     }
@@ -156,9 +156,9 @@ class PostController extends Controller
 
     }
 
-    public function home_post($id){
+    public function home_post($slug){
 
-        $post = Post::findOrFail($id);
+        $post = Post::findBySlugOrFail($slug);
         $categories = Category::all();
         $comments = $post->comments->where('is_active', 1);
         return view('post', compact('post', 'categories', 'comments'));

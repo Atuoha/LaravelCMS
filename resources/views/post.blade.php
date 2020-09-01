@@ -76,8 +76,8 @@
                 <!-- Comment -->
                 <div class="media">
                     <a class="pull-left" href="#">
-                       {{--  <img class="media-object img-circle" width="50" src="{{ $comment->photo }}" alt=""> --}}
-                       <img class="media-object img-circle" width="50" src="{{ Auth::user()->gravatar }}" alt=""> 
+                         <img class="media-object img-rounded" width="50" src="{{ $comment->photo }}" alt="">
+                       {{-- <img class="media-object img-circle" width="50" src="{{ Auth::user()->gravatar }}" alt=""> --}}
                        
                     </a>
                     <div class="media-body">
