@@ -16,7 +16,7 @@ class MediaController extends Controller
     public function index()
     {
         //
-        $photos = Photo::all();
+        $photos = Photo::paginate(5);
         return view('admin.media.index', compact('photos'));
     }
 
@@ -97,6 +97,30 @@ class MediaController extends Controller
         $photo->delete();
         Session::flash('del_img', 'A photo has been deleted from records');
 
-        return redirect('admin/media');
+        return redirect()->back();
+    }
+
+
+    public function delete_medias(Request $request){
+
+        $request->validate([
+            'action'=> 'required',
+            
+        ]);
+
+        $photos  = Photo::findOrFail($request->checkboxArray);
+        
+        if($request->action == 'delete'){
+            foreach($photos as $photo){
+                unlink(public_path() . $photo->name);
+                $photo->delete();
+            }
+          Session::flash('del_img', 'Photo(s) has been deleted from records');
+        }else{
+            Session::flash('noAction', 'Opps!! No Action Selected.');
+        }
+        
+        return redirect()->back();
+
     }
 }

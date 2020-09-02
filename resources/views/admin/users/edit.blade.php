@@ -58,7 +58,7 @@
 
 <div class="col-md-6">
     {!! Form::label('role_id', 'Role') !!}
-    {!! Form::select('role_id', ['1' => 'Admin', '2' => 'Subscriber'], null, ['class'=> 'form-control','placeholder' => 'Select role...'])!!}
+    {!! Form::select('role_id', ['' => 'Select Role'] +$role, null, ['class'=> 'form-control'])!!}
 
 @error('role_id')
 <div class="alert alert-danger">{{ $message }}</div>

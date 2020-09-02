@@ -1,4 +1,5 @@
 @extends('layouts.admin')
+@include('includes.tinymce')
 
 
 @section('title') Edit @stop
@@ -56,20 +57,17 @@
         </div>
     </div>
 
+  
+
     <div class="col-md-6">
         <div class="form-group">
-        {!! Form::label('category_id','Category') !!}
-            <select class="form-control" name="category_id">
-                <!-- <option disabled>Select A Category</option>clear -->
-                    @foreach($categories as $category)
-                    <option value="{{$category->id}}">{{$category->name}}</option>
-                    @endforeach
-            </select>
-
-            @error('category_id')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
+            {!! Form::label('Category','Category') !!}
+            {!! Form::select('category_id', [''=> 'Select Category'] + $Category, null, ['class'=> 'form-control'])!!}
         </div>
+
+        @error('category_id')
+                <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
     </div>
 
 </div>

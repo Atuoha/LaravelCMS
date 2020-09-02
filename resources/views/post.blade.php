@@ -7,7 +7,7 @@
                 <p>
                     @if(Auth::check())
                         @if(Auth::user()->is_admin())
-                            <a href="{{ route('posts.edit', $post->id) }}">Edit Post</a>
+                            <a href="{{ route('posts.edit', $post->slug) }}">Edit Post</a>
                         @endif
                     @endif
                 </p>
@@ -58,7 +58,7 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
-                        {!! Form::submit('Sumbit', ['class'=>'btn btn-primary']) !!}
+                        {!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}
 
                   {!! Form::close() !!}      
                 </div>
@@ -102,7 +102,7 @@
                            @if($reply->is_active == 1)
                                 <div class="media" style="margin-top:40px;">
                                     <a class="pull-left" href="#">
-                                        <img class="media-object img-circle" width="50" src="{{ $reply->photo}}" alt="">
+                                        <img class="media-object img-rounded" width="50" src="{{ $reply->photo}}" alt="">
                                     </a>
                                     <div class="media-body">
                                         <h4 class="media-heading"> {{ $reply->author }} 
@@ -133,7 +133,7 @@
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            {!! Form::submit('Sumbit', ['class'=>'btn btn-primary']) !!}
+                            {!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}
                          {!! Form::close() !!}
                          </div>
 
@@ -181,12 +181,16 @@
                                 @endif
                             </ul>
                         </div>
+
+
                     </div>
                     <!-- /.row -->
 
 @endif
 
 @stop
+
+
 
 <style>
     .reply_form{

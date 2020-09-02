@@ -92,13 +92,13 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
         //
-        $post = Post::findOrFail($id);
+        $post = Post::findBySlugOrFail($slug);
         $users = User::all();
-        $categories = Category::all();
-        return view('admin.posts.edit', compact('post', 'users','categories'));
+        $Category = Category::pluck('name','id')->all();
+        return view('admin.posts.edit', compact('post', 'users','Category'));
 
     }
 

@@ -49,4 +49,12 @@ class Post extends Model
     public function comments(){
         return $this->hasMany('App\Comment');
     }
+
+
+    // public function photo_exits(){
+    //     if($this->photo_id == ''){
+    //         return "Hicoku";
+    //     }
+    //     return $this->photo_id;
+    // }
 }

@@ -76,6 +76,11 @@ Route::group(['middleware'=>'admin'], function(){
     Route::resource('/admin/media', 'MediaController');
     Route::delete('/admin/media/{id}', 'MediaController@destroy');
 
+
+    // helping for multi-media deletion
+    Route::delete('/admin/delete/media', 'MediaController@delete_medias');
+
+
     // Comment routes
     Route::resource('/admin/comments', 'PostCommentController');
     Route::delete('/admin/comment/{id}', 'PostCommentController@destroy');
@@ -89,4 +94,6 @@ Route::group(['middleware'=>'admin'], function(){
 
 });
 
-
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+    \UniSharp\LaravelFilemanager\Lfm::routes();
+});

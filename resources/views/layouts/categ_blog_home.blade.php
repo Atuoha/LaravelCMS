@@ -154,7 +154,7 @@
                 <!-- Side Widget Well -->
                 <div class="well">
                     <h4>Side Widget Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
+                    <p>This is just a random Cms snippet like our previous works. It is designed with Laravel 7.25 and with some cool packages you may want to use on your project. Contact atutechsdev@gmail.com </p>
                 </div>
 
             </div>
@@ -168,7 +168,8 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; With Love From Atutechs 2020</p>
+                    
                 </div>
                 <!-- /.col-lg-12 -->
             </div>

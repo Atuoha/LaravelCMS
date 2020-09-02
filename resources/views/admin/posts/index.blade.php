@@ -56,7 +56,7 @@
                 <td> {{$post->status == 1 ? 'Active' : 'Not Active'}}</td>
                 <td>{{ $post->created_at->diffForHumans() }}</td>
                 <td>{{ $post->updated_at->diffForHumans() }}</td>
-                <td><a class="btn btn-primary" href="{{ route('posts.edit', $post->id)}}">Edit</a></td>
+                <td><a class="btn btn-primary" href="{{ route('posts.edit', $post->slug)}}">Edit</a></td>
                 <td><a class="btn btn-success" href="{{ route('posts.show', $post->slug)}}">View</a></td>
                 <td>
                     {!! Form::open(['method'=>'DELETE', 'action'=>['PostController@destroy', $post->id] ]) !!}
@@ -65,7 +65,7 @@
 
                     {!! Form::close() !!}
                 </td>
-                <td><a href="{{ route('home.post', $post->id) }}">View Post</td>
+                <td><a href="{{ route('home.post', $post->slug) }}">View Post</td>
                 <td><a href="{{ route('comments.show', $post->id) }}">Comments</td>
 
 

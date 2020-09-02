@@ -4,7 +4,7 @@
 @section('title') Create @stop
 
 @section('content')
-
+@include('includes.tinymce')
 <h1>Create Post</h1>
 
 
