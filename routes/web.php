@@ -30,6 +30,13 @@ Route::get('/post/{id}', 'PostController@home_post')->name('home.post');
 // Route::post('/search{request}', 'PostController@search')->name('search');
 Route::get('/category/{id}', 'PostController@cat_post')->name('category.post');
 
+Route::get('/author/{id}', 'PostController@author_post')->name('author.post');
+
+
+
+
+
+
 Route::group(['middleware'=>'admin'], function(){
 
 
@@ -47,7 +54,7 @@ Route::group(['middleware'=>'admin'], function(){
 
     // 
 
-    Route::view('/admin', 'admin.index');
+    Route::get('/admin', 'AdminController@index');
 
 
     // pOST ROUTES
@@ -81,19 +88,26 @@ Route::group(['middleware'=>'admin'], function(){
     Route::delete('/admin/delete/media', 'MediaController@delete_medias');
 
 
-    // Comment routes
-    Route::resource('/admin/comments', 'PostCommentController');
-    Route::delete('/admin/comment/{id}', 'PostCommentController@destroy');
-    Route::put('/admin/comment/{id}', 'PostCommentController@update');
+    // Profile
+    Route::get('/admin/profile', 'AdminUserController@profile')->name('admin.profile');
+    Route::get('/admin/profile/{id}', 'AdminUserController@edit')->name('admin.profile.edit');
 
-    // Replies routes
-    Route::resource('/admin/comment/replies', 'CommentRepliesController');
-    Route::get('/admin/comment/replies/{id}', 'CommentRepliesController@show');
 
-    Route::get('/admin/comment/show_replies/{id}', 'PostCommentController@replies')->name('comment.replies');
 
 });
 
 Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
+
+
+  // Comment routes
+  Route::resource('/admin/comments', 'PostCommentController');
+  Route::delete('/admin/comment/{id}', 'PostCommentController@destroy');
+  Route::put('/admin/comment/{id}', 'PostCommentController@update');
+
+  // Replies routes
+  Route::resource('/admin/comment/replies', 'CommentRepliesController');
+  Route::get('/admin/comment/replies/{id}', 'CommentRepliesController@show');
+
+  Route::get('/admin/comment/show_replies/{id}', 'PostCommentController@replies')->name('comment.replies');

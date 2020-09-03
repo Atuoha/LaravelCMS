@@ -5,7 +5,15 @@
 
 @section('content')
 
-<h3>Edit User | {{$user->name}} |</h3>
+<h3>Edit Profile | {{$user->name}} |</h3>
+
+@if(Session::has('updated_user'))
+
+    <div class="alert alert-success">
+        {{ session('updated_user') }}
+    </div>
+
+@endif
 
 {!! Form::model($user,['method'=>'PUT','action'=>['AdminUserController@update', $user->id], 'files'=>TRUE]) !!}
 
@@ -69,7 +77,7 @@
 
 
 <div class="form-group  mt-2">
-    {!! Form::submit('Edit User',['class'=>'btn btn-success']) !!}
+    {!! Form::submit('Submit Edit',['class'=>'btn btn-success']) !!}
 </div>
 
 

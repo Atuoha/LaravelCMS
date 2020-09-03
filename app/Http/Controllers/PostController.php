@@ -27,7 +27,7 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts = Post::paginate(2);
+        $posts = Post::paginate(5);
         return view('admin.posts.index', compact('posts'));
     }
 
@@ -165,10 +165,10 @@ class PostController extends Controller
     }
 
     public function all_home_posts(){
-        $posts = Post::paginate(2);
+        $posts = Post::paginate(5);
         $categories = Category::all();
 
-        return view('layouts.blog-home', compact('posts', 'categories'));
+        return view('blog-home', compact('posts', 'categories'));
     }
 
     // public function search(){
@@ -182,8 +182,17 @@ class PostController extends Controller
 
     public function cat_post($id){
         $sing_category = Category::findOrFail($id);
-        $posts = $sing_category->posts()->paginate(2);
+        $posts = $sing_category->posts()->paginate(5);
         $categories = Category::all();
-        return view('layouts.categ_blog_home', compact('posts','categories','sing_category'));
+        return view('categ_blog_home', compact('posts','categories','sing_category'));
+    }
+
+    public function author_post($id){
+
+        $user = User::findOrFail($id);
+        $posts = $user->posts()->paginate(5);
+        $categories = Category::all();
+
+        return view('author_post', compact('user','posts', 'categories'));
     }
 }

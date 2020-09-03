@@ -23,6 +23,7 @@ class AdminEntry
                return $next($request);
 
             }
+            return redirect('/home');
         }
         return redirect('/');
     }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use App\Photo;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 
@@ -127,9 +128,9 @@ class AdminUserController extends Controller
 
         $user->update($input);
         
-        Session::flash('updated_user', 'A user has been updated. User: | '. $input['name'] .' |');
+        Session::flash('updated_user', 'Updated Successfully. User: | '. $input['name'] .' |');
 
-        return redirect('/admin/users');
+        return redirect()->back();
     }
 
     /**
@@ -148,5 +149,16 @@ class AdminUserController extends Controller
 
         $user->delete();
         return redirect('/admin/users');
+    }
+
+    public function profile(){
+
+        if(Auth::check()){
+            $user_id = Auth::user()->id;
+
+            $profile = User::findOrFail($user_id);
+
+            return view('/admin/profile/profile', compact('profile'));
+        }
     }
 }

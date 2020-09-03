@@ -69,7 +69,7 @@
 
                 <td><a class="btn btn-secondary" href="{{ route('replies.show', $comment->id) }}">Reply</td>
                 <td><a class="btn btn-secondary" href="{{ route('comment.replies', $comment->id) }}">Replies</td>
-                <td><a class="btn btn-secondary" href="{{ route('home.post', $comment->post->id) }}">View Post</td>
+                <td><a class="btn btn-secondary" href="{{ route('home.post', $comment->post->slug) }}">View Post</td>
 
 
 

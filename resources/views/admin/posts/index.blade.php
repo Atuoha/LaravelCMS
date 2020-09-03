@@ -48,7 +48,7 @@
         @foreach($posts as $post)
         <tr>
                 <td>{{ $post->id }}</td>
-                <td>{{ $post->category->name }}</td>
+                <td>{{ $post->category == "" ? "Uncategorized" : $post->category->name }}</td>
                 <td><img class="img-rounded" width="100" src="{{$post->photo != '' ?  $post->photo->name : '/images/default.png'}}" alt=""></td>
                 <td>{{ Str::title($post->title)  }}</td>
                 <td>{{ Str::limit($post->body, 30)  }}</td>
