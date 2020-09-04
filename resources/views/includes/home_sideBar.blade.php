@@ -11,7 +11,7 @@
                     <form action="/search" method="post">
                     @csrf
                     <div class="input-group">
-                        <input type="text" name="search" class="form-control">
+                        <input type="text" name="search" placeholder="Search Title..." class="form-control">
                         <span class="input-group-btn">
                         <button class="btn btn-default" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>

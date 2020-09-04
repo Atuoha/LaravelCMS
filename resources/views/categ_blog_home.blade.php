@@ -2,7 +2,7 @@
 
   
 @section('content')
-    @if($posts)
+    @if(Count($posts) > 0)
 
     <div class="alert alert-success"> Posts with category name of: {{ $sing_category->name }}</div>
         @foreach($posts as $post)
@@ -20,6 +20,12 @@
             <p>{{ Str::limit($post->body, 150) }}</p>
             <a class="btn btn-primary" href="{{ route('home.post', $post->slug) }}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
         @endforeach
+
+    @else
+
+        <div class="alert alert-danger">
+            <h2 class="text-center">No Post with category name of "{{ $sing_category->name }}" </h2>
+        </div>
 
     @endif
 @stop
