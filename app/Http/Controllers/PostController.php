@@ -7,6 +7,7 @@ use App\User;
 use App\Photo;
 use App\Category;
 use App\Comment;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -160,7 +161,9 @@ class PostController extends Controller
 
         $post = Post::findBySlugOrFail($slug);
         $categories = Category::all();
-        $comments = $post->comments->where('is_active', 1);
+        // $comments = $post->comments->where('is_active', 1);
+        $comments = $post->comments;
+
         return view('post', compact('post', 'categories', 'comments'));
     }
 
@@ -171,14 +174,22 @@ class PostController extends Controller
         return view('blog-home', compact('posts', 'categories'));
     }
 
-    // public function search(){
+    public function search(Request $request){
 
-    //     // $validate = $request->validate[
-    //     //     'search'=> 'required'
-    //     // ];
+        $validate = $request->validate([
+            'search'=> 'required'
+        ]);
 
-    //     return $request->search;
-    // }
+        $search = $request->search;
+        $posts = Post::where('title', 'like', '%'. $search.'%')->paginate(5);
+        // $posts = DB::table('posts')->where('title', 'like', '%'. $search.'%')->get();
+        // $posts = DB::select('SELECT * FROM posts WHERE title = ? OR SELECT * FROM posts WHERE', []);
+        $categories = Category::all();
+     
+        return view('search', compact('posts', 'categories', 'search'));
+
+        
+    }
 
     public function cat_post($id){
         $sing_category = Category::findOrFail($id);

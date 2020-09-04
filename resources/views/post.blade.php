@@ -88,8 +88,8 @@
                 <!-- Nested Comment -->
                 @if($comment->replies) 
                     @foreach($comment->replies as $reply) 
-                    @if($reply->is_active == 1)
-                        <div class="media" style="margin-top:40px;">
+                  {{--  @if($reply->is_active == 1)  --}}
+                        <div class="media" style="margin-top:30px;">
                             <a class="pull-left" href="#">
                                 <img class="media-object img-rounded" width="50" src="{{ $reply->photo}}" alt="">
                             </a>
@@ -100,7 +100,7 @@
                             {{ $reply->reply }} 
                             </div>
                         </div>  
-                        @endif   
+                  {{--     @endif   --}}
                     @endforeach
                 @endif    
 
@@ -136,9 +136,9 @@
 
         
     @if(Auth::guest())
-        <div class="alert alert-success">Login to comment on this post. Your comment counts :)</div>
+        <div class="alert alert-success mt-3">Login to comment/reply on this post. Your comments/replies counts :)</div>
     @endif
-    
+
 
 @endif
 

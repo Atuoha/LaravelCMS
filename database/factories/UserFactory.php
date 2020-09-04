@@ -87,7 +87,7 @@ $factory->define(Comment::class, function (Faker $faker) {
         'post_id'=> $faker->numberBetween(1,10),
         'email'=> $faker->safeEmail,
         'is_active' => $faker->numberBetween(1,2),
-        'photo' => 'placeholder.jpg',
+        'photo' => '/images/default.png',
         'author' => $faker->name,
         'created_at' => now(),
         'updated_at' => now()
@@ -102,7 +102,7 @@ $factory->define(CommentReply::class, function (Faker $faker) {
         'comment_id'=> $faker->numberBetween(1,10),
         'email'=> $faker->safeEmail,
         'is_active' => $faker->numberBetween(1,2),
-        'photo' => 'placeholder.jpg',
+        'photo' => '/images/default.png',
         'author' => $faker->name,
         'created_at' => now(),
         'updated_at' => now()

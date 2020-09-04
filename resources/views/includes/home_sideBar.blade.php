@@ -4,10 +4,14 @@
                 <!-- Blog Search Well -->
                 <div class="well">
                     <h4>Blog Search</h4>
+                    
+                    @error('search')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                     <form action="/search" method="post">
                     @csrf
                     <div class="input-group">
-                        <input type="text" class="form-control">
+                        <input type="text" name="search" class="form-control">
                         <span class="input-group-btn">
                         <button class="btn btn-default" type="submit">
                                 <span class="glyphicon glyphicon-search"></span>

@@ -13,6 +13,8 @@
                 @yield('content')
 
                 <hr>
+
+                
                 <!-- Pager -->
                 <div class="row">
                 <div class="col-sm-6 col-offset-sm-5">

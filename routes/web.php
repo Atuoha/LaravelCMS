@@ -27,12 +27,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Home-post routes
 Route::get('/post/{id}', 'PostController@home_post')->name('home.post');
 
-// Route::post('/search{request}', 'PostController@search')->name('search');
+
 Route::get('/category/{id}', 'PostController@cat_post')->name('category.post');
 
 Route::get('/author/{id}', 'PostController@author_post')->name('author.post');
 
 
+Route::post('/search', 'PostController@search');
 
 
 

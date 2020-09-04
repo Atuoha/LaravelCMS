@@ -4,7 +4,7 @@
 @section('content')
     @if($posts)
 
-    <div class="alert alert-success"> Posts with category name of: {{ $sing_category->name }}</div>
+    <div class="alert alert-success"> Posts bearing a title that contains: {{ $search }}</div>
         @foreach($posts as $post)
                 <!--  Blog Posts -->
             <h2>
@@ -20,6 +20,12 @@
             <p>{{ Str::limit($post->body, 150) }}</p>
             <a class="btn btn-primary" href="{{ route('home.post', $post->slug) }}">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
         @endforeach
+
+    @else
+
+    <div class="alert alert-danger">
+        <h2 class="text-center">No Post with the title that contains "{{ $search}}" </h2>
+    </div>
 
     @endif
 @stop
